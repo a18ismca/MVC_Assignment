@@ -2,12 +2,38 @@
 
 <html>
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Jebi se</title>
+    <title>@ViewData["Title"] - MVC_Assignment</title>
 </head>
+
+<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css"/>
+<link rel="stylesheet" href="~/css/StyleSheet.css"/>
+
+
 <body>
-    <div>
+    
+   <header>
+       
+        <ul>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Projects">Projects</a>
+            </li>
+           
+        </ul>
+    </header>
+     <div>
         @RenderBody()
     </div>
 </body>
+<footer>&copy; Ismet Catovic @DateTime.Today.Date</footer>
 </html>
