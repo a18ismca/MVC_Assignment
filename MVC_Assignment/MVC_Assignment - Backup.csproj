@@ -8,12 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Shared\Pics\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\images\telenor.png" />
   </ItemGroup>
 
   <ItemGroup>

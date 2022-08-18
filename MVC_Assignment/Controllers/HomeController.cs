@@ -17,9 +17,10 @@ namespace MVC_Assignment.Controllers
         public IActionResult About()
         {
             string description = "My name is Ismet Catovic" +
-                "and I am 23 years old. Right now I study a påbyggnadsutbildning @ Lexicon and" +
+                "and I am 23 years old. Right now I study a påbyggnadsutbildning @ Lexicon and " +
                 "live in Gbg. I have taken my bachelor's diploma in Informatics - specialization" +
-                " in systems development March 2022.";
+                " in systems development March 2022. My hobbies are roadtrips abroad, hanging out w/ friends and spend " +
+                "time with my family. ";
 
             ViewBag.Info = description;
             return View();
@@ -33,7 +34,7 @@ namespace MVC_Assignment.Controllers
         public IActionResult Contact()
         {
             string Name = "Ismet Catovic";
-            string Email = "ismetcatovic@hotmail.se";
+            string Email = "ismetctvc@hotmall.sé";
             long PhoneNumber = 46707678703;
 
             ViewBag.Name = Name;
