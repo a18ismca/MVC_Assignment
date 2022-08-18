@@ -16,7 +16,7 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult About()
         {
-            string description = "My name is Ismet Catovic" +
+            string description = "My name is Ismet Catovici" +
                 "and I am 23 years old. Right now I study a påbyggnadsutbildning @ Lexicon and " +
                 "live in Gbg. I have taken my bachelor's diploma in Informatics - specialization" +
                 " in systems development March 2022. My hobbies are roadtrips abroad, hanging out w/ friends and spend " +
