@@ -7,6 +7,8 @@ namespace MVC_Assignment.Controllers
     {
 
         string sessionString = "ismets_session";
+
+
         public IActionResult GuessingGame()
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(sessionString))){
@@ -33,7 +35,9 @@ namespace MVC_Assignment.Controllers
             {
                 ViewBag.Result = "Please enter a number between 1 and 100!";
             }
+
             ViewBag.Result = GameModel.GetResult(guessedNumber);
+
 
             return View();
 
