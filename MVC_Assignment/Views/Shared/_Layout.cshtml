@@ -14,9 +14,9 @@
 <body>
     
    <header>
-       
+       <div class="container">
         <ul>
-            <img class="image" src="images/telenor.png" />
+            
             <li>
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             </li>
@@ -33,15 +33,21 @@
                 <a asp-area="" asp-controller="Doctor" asp-action="FeverCheck">Fever checker</a>
             </li>
             <li>
-                <a asp-area="" asp-action="GuessingGame">Guess number</a>
+                <a asp-area="" asp-controller="Guess" asp-action="GuessingGame">Guess number</a>
             </li>
+            <li>
+                <a asp-area="" asp-controller="Data" asp-action="DataView">Show data</a>
+            </li>
+            
             
            
         </ul>
+
+        </div>
     </header>
-     <div>
+     <div class="container">
         @RenderBody()
     </div>
 </body>
-<footer>&copy; Ismet Catovic @DateTime.Today.Date</footer>
+<footer class="container align-content-center">&copy; Ismet Catovic @DateTime.Today.Date</footer>
 </html>
