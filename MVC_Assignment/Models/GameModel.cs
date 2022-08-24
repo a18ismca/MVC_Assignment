@@ -5,6 +5,7 @@
 
         public static int CorrectAnswer { get; set; }
 
+        // CorrectAnswer = GetRandomNumber();
         public static int Attempts { get; set; }
 
 
@@ -27,6 +28,7 @@
                 if (Attempts > 0)
                 {
                     return "You have guessed right. Correct answer: " + CorrectAnswer + ". Attempts made: " + Attempts;
+
                 }
                 return "You have guessed right. Correct answer: " + CorrectAnswer;
 
@@ -34,7 +36,7 @@
 
         }
 
-        internal static int GetRandomNumber()
+        public static int GetRandomNumber()
         {
             Random random = new Random();
 

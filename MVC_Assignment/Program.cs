@@ -15,12 +15,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-/*app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller?}/{action=GuessingGame}/{id?}"
-    );
-*/
-
 app.UseSession();
 
 app.MapControllerRoute(
@@ -30,7 +24,7 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "Guess",
-    pattern: "{controller=Guess}/{action=GuessingGame}/{id?}"
+    pattern: "{controller=Home}/{action=Index}/{id?}"
     );
 
 app.Run();
