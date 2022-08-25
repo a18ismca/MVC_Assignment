@@ -15,6 +15,8 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult DataView()
         {
+
+            // Onödig kommentar
             return View(data);
         }
 
