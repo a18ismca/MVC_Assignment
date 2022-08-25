@@ -1,35 +1,101 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC_Assignment.ViewModels;
 using MVC_Assignment.Models;
 
 namespace MVC_Assignment.Controllers
 {
     public class DataController : Controller
     {
-        PeopleViewModel dataTable = new PeopleViewModel();
-        CreatePersonViewModel cpvm = new CreatePersonViewModel();
+        public static PeopleViewModel data = new PeopleViewModel();
+
+
+        // Used to assign id's to newly created persons added to the list.
+
+        public static int incrementer = data.People.Count();
 
         public IActionResult DataView()
         {
-            return View(dataTable.GetPeople());
+            return View(data);
         }
 
         [HttpPost]
-        public IActionResult DataView(string residence_input)
+        // Depending on the input, the persons that have the city and name attributes
+        // will be shown when submitting the form.
+        public IActionResult FilterPersonsOnCity(string user_input)
         {
-            return View(dataTable.GetPeopleWithSpecifiedResidence(residence_input));
-        }
+
+            if (user_input == "")
+            {
+                return View("DataView", data);
+            }
+            
+
+                var filteredData = data.People.Where(x => (x.City == user_input) 
+                                                    || (x.Name == user_input)).ToList();
 
 
-        public IActionResult AddNewPerson()
-        {
-            return View();
+                PeopleViewModel filteredModel = new PeopleViewModel();
+
+
+                filteredModel.People = filteredData;
+
+                if (filteredModel.People.Count == 0)
+                {
+                    return View("DataView");
+                }
+            
+            
+
+            return View("DataView", filteredModel);
         }
 
-        [HttpPost]
-        public IActionResult AddPersonToList(string nejm)
+        
+        public IActionResult AddPerson(PeopleViewModel m)
         {
-            cpvm.AddPerson(dataTable.people, nejm);
-            return RedirectToAction("DataView");
+            if (ModelState.IsValid)
+            {
+
+                data.People.Add(new Person()
+                {
+                    Id = ++incrementer,
+                    Name = m.NewPerson.Name,
+                    PhoneNumber = m.NewPerson.PhoneNumber,
+                    City = m.NewPerson.City
+                }
+                );
+                ViewBag.Statement = "The following person has been added: " + m.NewPerson.Name;
+            }
+            else {
+              
+                
+                    ViewBag.Statement = "Please fill in the form above!";
+                
+            }
+
+            return View("DataView", data);
+        }        
+        public IActionResult DeletePerson(int id)
+        {
+            if (id != null)
+            {
+                try
+                {
+                    data.People.RemoveAt(id - 1);
+                    ViewBag.Statement = $"A person with id {id} has been removed.";
+
+                }
+                catch (ArgumentOutOfRangeException aa)
+                {
+                    ViewBag.Statement = aa.Message;
+                }
+            }
+            else
+            {
+                ViewBag.Statement = "Unable to remove person!";
+            }
+            
+            return View("DataView", data);
         }
+       
     }
 }

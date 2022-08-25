@@ -2,31 +2,25 @@
 // annotations to validate inputs when creating new person.
 
 
+using MVC_Assignment.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace MVC_Assignment.Models
+namespace MVC_Assignment.ViewModels
 {
     public class CreatePersonViewModel
     {
-        PeopleViewModel pmv = new PeopleViewModel();
-        
-       
-
-        public void AddPerson(List<Person> listOfPeople, string name)
-        {
-            listOfPeople.Add(new Person { Name = name });
-            
-        }
-
+        [Required]
+        [Range(0, 1000)]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-
+        [Required]
         [Display(Name = "Phone number")]
         public int PhoneNumber { get; set; }
+        [Required]
         [Display(Name = "Residence")]
-        public string Place { get; set; }
+        public string City { get; set; }
 
-        
+
     }
 }
