@@ -13,7 +13,7 @@ namespace MVC_Assignment.Controllers
 
         public static int incrementer = data.People.Count();
 
-        public IActionResult DataView()
+        public IActionResult Index()
         {
 
             // Onödig kommentar
@@ -28,7 +28,7 @@ namespace MVC_Assignment.Controllers
 
             if (user_input == "")
             {
-                return View("DataView", data);
+                return View("Index", data);
             }
             
 
@@ -43,12 +43,12 @@ namespace MVC_Assignment.Controllers
 
                 if (filteredModel.People.Count == 0)
                 {
-                    return View("DataView");
+                    return View("Index");
                 }
             
             
 
-            return View("DataView", filteredModel);
+            return View("Index", filteredModel);
         }
 
         
@@ -74,7 +74,7 @@ namespace MVC_Assignment.Controllers
                 
             }
 
-            return View("DataView", data);
+            return View("Index", data);
         }        
         public IActionResult DeletePerson(int id)
         {
@@ -96,7 +96,7 @@ namespace MVC_Assignment.Controllers
                 ViewBag.Statement = "Unable to remove person!";
             }
             
-            return View("DataView", data);
+            return View("Index", data);
         }
        
     }
