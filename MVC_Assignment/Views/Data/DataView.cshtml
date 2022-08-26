@@ -7,7 +7,7 @@
 
 <h1>@ViewBag.Title</h1>
 
-<partial name="~/Views/Shared/_PartialView.cshtml" />
+
 
 <form class="container" method="post" asp-action="FilterPersonsOnCity">
 
@@ -45,7 +45,9 @@
 
 <p>@ViewBag.Statement</p>
 
+<partial name="~/Views/Shared/_PartialView.cshtml" />
 
+@*
 @if (@Model != null)
 {
     <table class="table">
@@ -87,6 +89,8 @@
 } else{
     <p>No results found.</p>
 }
+
+*@
 
 <p>
     <a asp-controller="Data" asp-action="DataView">Refresh table</a>
