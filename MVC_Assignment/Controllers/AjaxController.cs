@@ -11,8 +11,7 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Index()
         {
-
-            // Onödig kommentar
+               
             return View();
         }
 

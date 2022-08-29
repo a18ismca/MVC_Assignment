@@ -1,4 +1,6 @@
-﻿function FetchPeople() {
+﻿
+
+function FetchPeople() {
     $.ajax({
         type: "GET",
         url: "Ajax/FetchData",
@@ -9,7 +11,6 @@
     })
 }
 
-// id_input1
 function GetDetailsOfPerson() {
 
     var id = document.getElementById("id_input1").value;
