@@ -41,14 +41,11 @@ namespace MVC_Assignment.Controllers
 
                 filteredModel.People = filteredData;
 
-                if (filteredModel.People.Count == 0)
-                {
-                    return View("Index");
-                }
+                
             
-            
+                
 
-            return View("Index", filteredModel);
+                return View("Index", filteredModel);
         }
 
         
@@ -75,7 +72,9 @@ namespace MVC_Assignment.Controllers
             }
 
             return View("Index", data);
-        }        
+        }
+
+        [HttpPost]
         public IActionResult DeletePerson(int id)
         {
             if (id != null)

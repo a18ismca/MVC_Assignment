@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MVC_Assignment.ViewModels.PeopleViewModel
+
 @{
+    ViewData["Title"] = "Data Manager with AJAX";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+ <script src="~/js/scriptic.js"></script>
+
+<div class="container">
+    <div class="flex-column"></div>
+        <button onclick="FetchPeople()">Fetch people</button>
+        <div class="row">
+            <input id="id_input1" class="form-control input-sm" type="number" placeholder="Enter the person's id" />
+            <button onclick="GetDetailsOfPerson()">Details</button>
+     
+        </div>
+
+        <div class="row">
+            <input id="id_input2" class="form-control input-sm" type="number" placeholder="Enter the person's id" />
+            <button onclick="DeletePerson()">Delete</button>
+     
+        </div>
+
+        <p>@ViewBag.Statement</p>
+    </div>
+
+
+<div id="ShowData">
+
+</div>
