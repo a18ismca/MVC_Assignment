@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Assignment.ViewModels;
 using MVC_Assignment.Models;
+using MVC_Assignment.DbData;
 
 namespace MVC_Assignment.Controllers
 {
@@ -8,6 +9,12 @@ namespace MVC_Assignment.Controllers
     {
         public static PeopleViewModel data = new PeopleViewModel();
 
+        readonly ApplicationDbContext _context;
+
+        public DataController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         // Used to assign id's to newly created persons added to the list.
 
@@ -15,8 +22,8 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Index()
         {
+            data.People = _context.People.ToList();
 
-            // Onödig kommentar
             return View(data);
         }
 
@@ -25,6 +32,7 @@ namespace MVC_Assignment.Controllers
         // will be shown when submitting the form.
         public IActionResult FilterPersonsOnCity(string user_input)
         {
+            data.People = _context.People.ToList();
 
             if (user_input == "")
             {

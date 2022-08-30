@@ -1,4 +1,6 @@
-﻿using MVC_Assignment.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC_Assignment.Models;
+
 
 namespace MVC_Assignment.ViewModels
 {
@@ -6,6 +8,7 @@ namespace MVC_Assignment.ViewModels
     {
         public CreatePersonViewModel NewPerson { get; set; }
 
+        
         public List<Person> People = new List<Person>();
 
         // use both new and existing data in the constructor below
