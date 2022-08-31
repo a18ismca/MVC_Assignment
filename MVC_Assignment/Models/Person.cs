@@ -12,7 +12,7 @@ namespace MVC_Assignment.Models
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Phone number"), MinLength(5), MaxLength(5)]
+        [Display(Name = "Phone number")]
         [Required]
         public int PhoneNumber { get; set; }
 

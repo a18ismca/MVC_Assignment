@@ -1,7 +1,9 @@
-﻿@model MVC_Assignment.ViewModels.PeopleViewModel
+﻿@* @model MVC_Assignment.ViewModels.PeopleViewModel *@
+
+@model IEnumerable<Person>
 
 
-@foreach(var item in Model.People)
+@foreach(var item in Model)
           {
             <div class="row">
                 <div class="col">

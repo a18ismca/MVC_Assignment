@@ -1,4 +1,6 @@
-﻿@model MVC_Assignment.ViewModels.PeopleViewModel
+﻿@* @model MVC_Assignment.ViewModels.PeopleViewModel *@
+
+@model IEnumerable<Person>
 
 @{
     ViewData["Title"] = "Data Manager";
@@ -7,9 +9,10 @@
 
 <h1>@ViewBag.Title</h1>
 
+<li><a asp-action="Create">Create person</a></li>
 
 
-<form class="container" method="post" asp-action="FilterPersonsOnCity">
+<form class="container" method="post" asp-action="FilterPersons">
 
     <label>Search for a city or name...</label><br />
 
@@ -21,29 +24,6 @@
 
 <br />
 
-<form class="container" method="post" asp-action="AddPerson">
-
-    <label>Create new user...</label><br />
-    <label>
-        @Html.DisplayNameFor(model => model.NewPerson.Name)
-    </label><br />
-    <input type="text" asp-for="NewPerson.Name"/><br />
-
-    <label> 
-        @Html.DisplayNameFor(model => model.NewPerson.PhoneNumber)
-    </label><br />
-    <input type="number" asp-for="NewPerson.PhoneNumber" /><br />
-
-    <label>
-       @Html.DisplayNameFor(model => model.NewPerson.City)
-    </label><br />
-    <input type="text" asp-for="NewPerson.City"/><br />
-    
-    <input type="submit"/>
-
-</form>
-
-<p>@ViewBag.Statement</p>
 
 <partial name="~/Views/Shared/_TableView.cshtml" />
 

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220830145523_init")]
+    [Migration("20220831124407_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,6 @@ namespace MVC_Assignment.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("PhoneNumber")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.HasKey("Id");

@@ -39,7 +39,6 @@ namespace MVC_Assignment.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("PhoneNumber")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.HasKey("Id");

@@ -15,7 +15,7 @@ namespace MVC_Assignment.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

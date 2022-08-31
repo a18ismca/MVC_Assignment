@@ -1,0 +1,27 @@
+﻿@model Person
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create person</h1>
+
+<form class="form form-control-sm" method="post">
+
+      <label class="form-label" asp-for="Name"></label><br />
+    <input type="text" asp-for="Name" /><br />
+
+      <label class="form-label" asp-for="PhoneNumber"></label><br />
+    <input type="number" asp-for="PhoneNumber" /><br />
+
+      <label class="form-label" asp-for="City"></label><br />
+    <input type="text" asp-for="City" /><br />
+
+    <input class="shadow" type="submit" value="Cre8!" asp-action="Create">
+</form>
+
+<li><a asp-action="Index">Return to table</a></li>
+
+
+

@@ -1,13 +1,15 @@
-﻿@model MVC_Assignment.ViewModels.PeopleViewModel
+﻿@* @model MVC_Assignment.ViewModels.PeopleViewModel *@
+
+@model IEnumerable<Person>
 
  <div class="row">
             <div class="col-3">
-                @Html.DisplayNameFor(model => model.NewPerson.Name)
+                @Html.DisplayNameFor(model => model.Name)
             </div>
             <div class="col-3">
-                @Html.DisplayNameFor(model => model.NewPerson.PhoneNumber)
+                @Html.DisplayNameFor(model => model.PhoneNumber)
             </div>
             <div class="col-3">
-                @Html.DisplayNameFor(model => model.NewPerson.City)
+                @Html.DisplayNameFor(model => model.City)
             </div>
  </div>

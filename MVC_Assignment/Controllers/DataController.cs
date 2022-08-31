@@ -7,7 +7,7 @@ namespace MVC_Assignment.Controllers
 {
     public class DataController : Controller
     {
-        public static PeopleViewModel data = new PeopleViewModel();
+        
 
         readonly ApplicationDbContext _context;
 
@@ -18,72 +18,69 @@ namespace MVC_Assignment.Controllers
 
         // Used to assign id's to newly created persons added to the list.
 
-        public static int incrementer = data.People.Count();
+        //public static int incrementer = data.People.Count();
 
         public IActionResult Index()
         {
-            data.People = _context.People.ToList();
+            var listOfPeople = _context.People.ToList();
+            return View(listOfPeople);
+        }
 
-            return View(data);
+        public IActionResult Create()
+        {
+            return View();
         }
 
         [HttpPost]
+        public IActionResult Create(Person p)
+        {
+            
+
+            if (ModelState.IsValid)
+            {
+                _context.People.Add(p);
+             
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        
+        [HttpPost]
         // Depending on the input, the persons that have the city and name attributes
         // will be shown when submitting the form.
-        public IActionResult FilterPersonsOnCity(string user_input)
+        public IActionResult FilterPersons(string user_input)
         {
-            data.People = _context.People.ToList();
+            var listOfPeople = _context.People.ToList();
 
             if (user_input == "")
             {
-                return View("Index", data);
+                return RedirectToAction("Index");
             }
             
 
-                var filteredData = data.People.Where(x => (x.City == user_input) 
+                var filteredData = listOfPeople.Where(x => (x.City == user_input) 
                                                     || (x.Name == user_input)).ToList();
 
 
-                PeopleViewModel filteredModel = new PeopleViewModel();
+                listOfPeople = filteredData;
 
 
-                filteredModel.People = filteredData;
-
-                if (filteredModel.People.Count == 0)
+                if (listOfPeople.Count == 0)
                 {
                     return View("Index");
                 }
             
             
 
-            return View("Index", filteredModel);
+            return View("Index", listOfPeople);
         }
 
+        /*
+
         
-        public IActionResult AddPerson(PeopleViewModel m)
-        {
-            if (ModelState.IsValid)
-            {
-
-                data.People.Add(new Person()
-                {
-                    Id = ++incrementer,
-                    Name = m.NewPerson.Name,
-                    PhoneNumber = m.NewPerson.PhoneNumber,
-                    City = m.NewPerson.City
-                }
-                );
-                ViewBag.Statement = "The following person has been added: " + m.NewPerson.Name;
-            }
-            else {
-              
-                
-                    ViewBag.Statement = "Please fill in the form above!";
-                
-            }
-
-            return View("Index", data);
-        }        
+        
         public IActionResult DeletePerson(int id)
         {
             if (id != null)
@@ -106,6 +103,8 @@ namespace MVC_Assignment.Controllers
             
             return View("Index", data);
         }
+
+        */
        
     }
 }
