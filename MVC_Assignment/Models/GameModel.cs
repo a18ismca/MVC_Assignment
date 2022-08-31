@@ -5,32 +5,42 @@
 
         public static int CorrectAnswer { get; set; }
 
-        // CorrectAnswer = GetRandomNumber();
+        public static string Statement { get; set; }
         public static int Attempts { get; set; }
 
+        
 
-        public static string GetResult(int guessedNumber)
+        public static bool GetResult(int guessedNumber, int randomNumber)
         {
             if(guessedNumber < 0 || guessedNumber > 100)
             {
-                return "Please enter an int between 0 and 100!";
-            } else if(guessedNumber > CorrectAnswer)
+                Statement = "Please enter an int between 0 and 100!";
+                return false;
+
+            } else if(guessedNumber > randomNumber)
             {
                 Attempts++;
-                return "Number is lower, try again. Attempts made: " + Attempts;
-            } else if(guessedNumber < CorrectAnswer)
+                Statement = "Number is lower, try again. Attempts made: " + Attempts;
+                return false;
+
+            } else if(guessedNumber < randomNumber)
             {
                 Attempts++;
-                return "Number is higher, try again. Attempts made: " + Attempts;
+                Statement = "Number is higher, try again. Attempts made: " + Attempts;
+                return false;
             }
             else
             {
-                if (Attempts > 0)
-                {
-                    return "You have guessed right. Correct answer: " + CorrectAnswer + ". Attempts made: " + Attempts;
 
-                }
-                return "You have guessed right. Correct answer: " + CorrectAnswer;
+                Statement = "You have guessed right. Correct answer: " + randomNumber + ". Attempts made: " + Attempts;
+               
+                randomNumber = GetRandomNumber();
+
+                Statement = "The game has restarted. New number: " + randomNumber;
+
+                Attempts = 0;
+
+                return true;
 
             }
 

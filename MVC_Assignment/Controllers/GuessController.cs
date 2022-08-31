@@ -9,43 +9,46 @@ namespace MVC_Assignment.Controllers
         string sessionString = "ismets_session";
 
 
-        public IActionResult GuessingGame()
+        public IActionResult Index()
         {
-    
+            
+            int randomNumber = GameModel.GetRandomNumber();
+
+            ViewBag.Result = randomNumber.ToString();
+
+            HttpContext.Session.SetString(sessionString, randomNumber.ToString());
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult GuessingGame(int guessedNumber)
+        public IActionResult Index(int guessedNumber)
         {
-            
-            if (guessedNumber <= 0 || guessedNumber > 100)
+            //int randomNumber = GameModel.GetRandomNumber();
+
+
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString(sessionString)))
             {
-                ViewBag.Result = "Please enter a number between 1 and 100!";
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(HttpContext.Session.GetString(sessionString)))
+
+                int parseInt = int.Parse(HttpContext.Session.GetString(sessionString));
+
+                if (GameModel.GetResult(guessedNumber, parseInt) == true)
                 {
-                    int randomNumber = GameModel.GetRandomNumber();
+                    ViewBag.Result = GameModel.Statement;
 
-                    GameModel.CorrectAnswer = randomNumber;
-
-                    HttpContext.Session.SetString(sessionString, randomNumber.ToString());
+                    HttpContext.Session.SetString(sessionString, parseInt.ToString());
 
 
+                    return View();
                 }
                 else
                 {
-                    GameModel.CorrectAnswer = int.Parse(HttpContext.Session.GetString(sessionString));
+                    ViewBag.Result = GameModel.Statement;
                 }
             }
 
-            ViewBag.Result = GameModel.GetResult(guessedNumber);
-            
-
             return View();
-
         }
     }
 }
+
