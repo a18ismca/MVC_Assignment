@@ -12,11 +12,11 @@ namespace MVC_Assignment.Models
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Phone number")]
+        [Display(Name = "Phone number"), Range(00000, 99999)]
         [Required]
         public int PhoneNumber { get; set; }
 
-        [Display(Name = "Residence")]
+        [Display(Name = "Residence"), MaxLength(40)]
         [Required]
         public string City { get; set; }
     }

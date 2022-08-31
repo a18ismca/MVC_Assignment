@@ -39,14 +39,16 @@ namespace MVC_Assignment.Controllers
             if (ModelState.IsValid)
             {
                 _context.People.Add(p);
-             
-                _context.SaveChanges();
-            }
 
+                _context.SaveChanges();
+
+            }
             return RedirectToAction("Index");
+
+
         }
 
-        
+
         [HttpPost]
         // Depending on the input, the persons that have the city and name attributes
         // will be shown when submitting the form.
@@ -76,35 +78,20 @@ namespace MVC_Assignment.Controllers
 
             return View("Index", listOfPeople);
         }
-
-        /*
-
         
         
         public IActionResult DeletePerson(int id)
         {
-            if (id != null)
-            {
-                try
-                {
-                    data.People.RemoveAt(id - 1);
-                    ViewBag.Statement = $"A person with id {id} has been removed.";
+            var person = _context.People.FirstOrDefault(x => x.Id == id);
 
-                }
-                catch (ArgumentOutOfRangeException aa)
-                {
-                    ViewBag.Statement = aa.Message;
-                }
-            }
-            else
+            if (person != null)
             {
-                ViewBag.Statement = "Unable to remove person!";
+                _context.People.Remove(person);
+                _context.SaveChanges();
             }
-            
-            return View("Index", data);
+
+            return RedirectToAction("Index");
+
         }
-
-        */
-       
     }
 }
