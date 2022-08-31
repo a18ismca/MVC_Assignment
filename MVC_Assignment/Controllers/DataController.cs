@@ -87,6 +87,7 @@ namespace MVC_Assignment.Controllers
             if (person != null)
             {
                 _context.People.Remove(person);
+
                 _context.SaveChanges();
             }
 
