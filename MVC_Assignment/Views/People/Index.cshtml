@@ -27,50 +27,6 @@
 
 <partial name="~/Views/Shared/_TableView.cshtml" />
 
-@*
-@if (@Model != null)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.NewPerson.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NewPerson.PhoneNumber)
-                </th>
-                <th> 
-                    @Html.DisplayNameFor(model => model.NewPerson.City)
-                </th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.People)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-
-                    <td>
-                        @Html.ActionLink("Delete", "DeletePerson", "Data", new {  id=item.Id  })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-} else{
-    <p>No results found.</p>
-}
-
-*@
 
 <p>
     <a asp-controller="People" asp-action="Index">Refresh table</a>
