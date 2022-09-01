@@ -2,6 +2,7 @@
 using MVC_Assignment.ViewModels;
 using MVC_Assignment.Models;
 using MVC_Assignment.DbData;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVC_Assignment.Controllers
 {
@@ -22,7 +23,8 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Index()
         {
-            var listOfPeople = _context.People.ToList();
+            var listOfPeople = _context.People.Include(x => x.City);
+            
             return View(listOfPeople);
         }
 
@@ -62,8 +64,8 @@ namespace MVC_Assignment.Controllers
             }
             
 
-                var filteredData = listOfPeople.Where(x => (x.City == user_input) 
-                                                    || (x.Name == user_input)).ToList();
+                var filteredData = listOfPeople.Where(x => /*(x.City == user_input) 
+                                                    || */(x.Name == user_input)).ToList();
 
 
                 listOfPeople = filteredData;
