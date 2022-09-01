@@ -6,6 +6,7 @@ namespace MVC_Assignment.ViewModels
     {
 
         [Key]
+        [Range(0, 1000)]
         public int CountryId { get; set; }
 
         public string Name { get; set; }

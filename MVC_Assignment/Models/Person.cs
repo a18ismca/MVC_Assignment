@@ -20,5 +20,7 @@ namespace MVC_Assignment.Models
         [Display(Name = "Residence"), MaxLength(40)]
         [Required]
         public City City { get; set; }
+        [Required]
+        public int CityId { get; set; }
     }
 }
