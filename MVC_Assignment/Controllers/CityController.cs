@@ -6,6 +6,8 @@ namespace MVC_Assignment.Controllers
     {
         public IActionResult Index()
         {
+
+            var GetCities =
             return View();
         }
     }
