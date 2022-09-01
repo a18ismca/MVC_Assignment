@@ -64,7 +64,7 @@ namespace MVC_Assignment.Controllers
             }
             
 
-                var filteredData = listOfPeople.Where(x => /*(x.City == user_input) 
+                var filteredData = listOfPeople.Where(x => /*(x.City.Name == user_input) 
                                                     || */(x.Name == user_input)).ToList();
 
 

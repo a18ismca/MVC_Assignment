@@ -15,8 +15,10 @@
       <label class="form-label" asp-for="PhoneNumber"></label><br />
     <input type="number" asp-for="PhoneNumber" /><br />
 
-      <label class="form-label" asp-for="City"></label><br />
-    <input type="text" asp-for="City" /><br />
+
+    @*Dropdown! Kolla föreälsningar etc. *@
+      <label class="form-label" asp-for="City.Name"></label><br />
+    <input type="text" asp-for="City.Name" /><br />
 
     <input class="shadow" type="submit" value="Cre8!" asp-action="Create">
 </form>
