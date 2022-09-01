@@ -5,13 +5,13 @@ using MVC_Assignment.DbData;
 
 namespace MVC_Assignment.Controllers
 {
-    public class DataController : Controller
+    public class PeopleController : Controller
     {
         
 
         readonly ApplicationDbContext _context;
 
-        public DataController(ApplicationDbContext context)
+        public PeopleController(ApplicationDbContext context)
         {
             _context = context;
         }
