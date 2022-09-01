@@ -5,6 +5,7 @@
 
         public static int CorrectAnswer { get; set; }
 
+        public static int NewRandomNumber { get; set; }
         public static string Statement { get; set; }
         public static int Attempts { get; set; }
 
@@ -34,7 +35,7 @@
 
                 Statement = "You have guessed right. Correct answer: " + randomNumber + ". Attempts made: " + Attempts;
                
-                randomNumber = GetRandomNumber();
+                NewRandomNumber = GetRandomNumber();
 
                 Statement = "The game has restarted. New number: " + randomNumber;
 

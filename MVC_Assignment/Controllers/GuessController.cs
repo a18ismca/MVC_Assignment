@@ -30,13 +30,13 @@ namespace MVC_Assignment.Controllers
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString(sessionString)))
             {
 
-                int parseInt = int.Parse(HttpContext.Session.GetString(sessionString));
+                //int parseInt = int.Parse(HttpContext.Session.GetString(sessionString));
 
-                if (GameModel.GetResult(guessedNumber, parseInt) == true)
+                if (GameModel.GetResult(guessedNumber, int.Parse(HttpContext.Session.GetString(sessionString))) == true)
                 {
                     ViewBag.Result = GameModel.Statement;
 
-                    HttpContext.Session.SetString(sessionString, parseInt.ToString());
+                    HttpContext.Session.SetString(sessionString, GameModel.NewRandomNumber.ToString());
 
 
                     return View();
