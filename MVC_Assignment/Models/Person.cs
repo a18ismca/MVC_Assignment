@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MVC_Assignment.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC_Assignment.Models
 {
@@ -18,6 +19,6 @@ namespace MVC_Assignment.Models
 
         [Display(Name = "Residence"), MaxLength(40)]
         [Required]
-        public string City { get; set; }
+        public City City { get; set; }
     }
 }

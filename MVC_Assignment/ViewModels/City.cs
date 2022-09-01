@@ -6,8 +6,11 @@ namespace MVC_Assignment.ViewModels
     public class City
     {
 
-        public int Id { get; set; }
+        [Key]
+        public int CityId { get; set; }
         public string Name { get; set; }
+
+        public Country Country { get; set; }
         public List<Person> Inhabitants { get; set; }
 
 

@@ -1,9 +1,12 @@
-﻿namespace MVC_Assignment.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MVC_Assignment.ViewModels
 {
     public class Country
     {
 
-        public int Id { get; set; }
+        [Key]
+        public int CountryId { get; set; }
 
         public string Name { get; set; }
 
