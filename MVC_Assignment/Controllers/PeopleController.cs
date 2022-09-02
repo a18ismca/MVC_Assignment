@@ -3,6 +3,7 @@ using MVC_Assignment.ViewModels;
 using MVC_Assignment.Models;
 using MVC_Assignment.DbData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MVC_Assignment.Controllers
 {
@@ -30,21 +31,29 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Create()
         {
+
+            ViewBag.CityOptions = new SelectList(_context.Cities, "CityId", "Name");
+             
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Person p)
+        public IActionResult Create(Person p, string name_input, int phone_input, int cityid_input)
         {
+            p = new Person { Name = name_input, PhoneNumber = phone_input, CityId = cityid_input };
+            _context.People.Add(p);
+
+            _context.SaveChanges();
             
 
-            if (ModelState.IsValid)
+
+            /*if (ModelState.IsValid)
             {
                 _context.People.Add(p);
 
                 _context.SaveChanges();
 
-            }
+            }*/
             return RedirectToAction("Index");
 
 
