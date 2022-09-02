@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MVC_Assignment.Models;
 
-namespace MVC_Assignment.ViewModels
+namespace MVC_Assignment.Models
 {
     public class City
     {

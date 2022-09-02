@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVC_Assignment.ViewModels;
 using MVC_Assignment.Models;
 using MVC_Assignment.DbData;
 using Microsoft.EntityFrameworkCore;

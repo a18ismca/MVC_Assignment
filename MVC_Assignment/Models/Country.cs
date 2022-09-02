@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MVC_Assignment.ViewModels
+namespace MVC_Assignment.Models
 {
     public class Country
     {

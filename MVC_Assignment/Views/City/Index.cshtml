@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_Assignment.ViewModels.City>
+﻿@model IEnumerable<City>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,7 +11,7 @@
     <a asp-action="Create">Create new city</a>
 </p>
 
-if(@Model != null){
+@if(Model != null){
         <table class="table">
             <thead>
                 <tr>
@@ -24,22 +24,23 @@ if(@Model != null){
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            
         @foreach (var item in Model) {
+            <tbody>
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Country.CountryId)
+                        @Html.DisplayFor(modelItem => item.Country.Name)
                     </td>
                     <td>
                         <a asp-action="Delete" asp-route-id="@item.CityId">Delete</a>
                     </td>
                 </tr>
-        }
             </tbody>
+        }
         </table>
 } else{
-    <p>No results found. :( </p>
+    <p>No results found. </p>
 }

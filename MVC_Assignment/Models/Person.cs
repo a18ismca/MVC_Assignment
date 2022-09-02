@@ -1,5 +1,4 @@
-﻿using MVC_Assignment.ViewModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MVC_Assignment.Models
 {

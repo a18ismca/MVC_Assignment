@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC_Assignment.Models;
-using MVC_Assignment.ViewModels;
 
 namespace MVC_Assignment.DbData
 {
