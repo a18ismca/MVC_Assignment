@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_Assignment.DbData;
+using MVC_Assignment.Models;
 
 namespace MVC_Assignment.Controllers
 {
@@ -20,8 +22,40 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.CountryOptions = null;
+            ViewBag.CountryOptions = new SelectList(_context.Countries, "CountryId", "Name");
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(City c, string name_input, int countryid_input)
+        {
+            c = new City { Name = name_input, CountryId = countryid_input };
+
+            _context.Cities.Add(c);
+
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index");
+
+        }
+        /*
+        [HttpPost]
+        public IActionResult DeleteCity(int id)
+        {
+            var city = _context.Cities.FirstOrDefault(x => x.CityId == id);
+
+            if (city != null)
+            {
+                _context.Cities.Remove(city);
+
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
+        */
     }
 }
