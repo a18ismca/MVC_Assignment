@@ -1,0 +1,18 @@
+﻿@model Country
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create country</h1>
+
+<form class="form form-control-sm" method="post">
+
+      <label class="form-label" asp-for="Name"></label><br />
+    <input type="text" name="name_input" /><br />
+
+    <input class="shadow" type="submit" value="Cre8!" asp-action="Create">
+
+</form>
+<li><a asp-action="Index">Return to table</a></li>

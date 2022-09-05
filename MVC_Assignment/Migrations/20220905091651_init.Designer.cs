@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220901142541_init")]
+    [Migration("20220905091651_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,6 +22,83 @@ namespace MVC_Assignment.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("MVC_Assignment.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            CityId = 1,
+                            CountryId = 1,
+                            Name = "Göteborg"
+                        },
+                        new
+                        {
+                            CityId = 2,
+                            CountryId = 2,
+                            Name = "Trebinje"
+                        },
+                        new
+                        {
+                            CityId = 3,
+                            CountryId = 1,
+                            Name = "Malmö"
+                        },
+                        new
+                        {
+                            CityId = 4,
+                            CountryId = 2,
+                            Name = "Stolac"
+                        });
+                });
+
+            modelBuilder.Entity("MVC_Assignment.Models.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            CountryId = 1,
+                            Name = "Sweden"
+                        },
+                        new
+                        {
+                            CountryId = 2,
+                            Name = "Bosnia"
+                        });
+                });
 
             modelBuilder.Entity("MVC_Assignment.Models.Person", b =>
                 {
@@ -93,97 +170,9 @@ namespace MVC_Assignment.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MVC_Assignment.ViewModels.City", b =>
+            modelBuilder.Entity("MVC_Assignment.Models.City", b =>
                 {
-                    b.Property<int>("CityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            CityId = 1,
-                            CountryId = 1,
-                            Name = "Göteborg"
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CountryId = 2,
-                            Name = "Trebinje"
-                        },
-                        new
-                        {
-                            CityId = 3,
-                            CountryId = 1,
-                            Name = "Malmö"
-                        },
-                        new
-                        {
-                            CityId = 4,
-                            CountryId = 2,
-                            Name = "Stolac"
-                        });
-                });
-
-            modelBuilder.Entity("MVC_Assignment.ViewModels.Country", b =>
-                {
-                    b.Property<int>("CountryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CountryId");
-
-                    b.ToTable("Countries");
-
-                    b.HasData(
-                        new
-                        {
-                            CountryId = 1,
-                            Name = "Sweden"
-                        },
-                        new
-                        {
-                            CountryId = 2,
-                            Name = "Bosnia"
-                        });
-                });
-
-            modelBuilder.Entity("MVC_Assignment.Models.Person", b =>
-                {
-                    b.HasOne("MVC_Assignment.ViewModels.City", "City")
-                        .WithMany("Inhabitants")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("City");
-                });
-
-            modelBuilder.Entity("MVC_Assignment.ViewModels.City", b =>
-                {
-                    b.HasOne("MVC_Assignment.ViewModels.Country", "Country")
+                    b.HasOne("MVC_Assignment.Models.Country", "Country")
                         .WithMany("Cities")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -192,12 +181,23 @@ namespace MVC_Assignment.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("MVC_Assignment.ViewModels.City", b =>
+            modelBuilder.Entity("MVC_Assignment.Models.Person", b =>
+                {
+                    b.HasOne("MVC_Assignment.Models.City", "City")
+                        .WithMany("Inhabitants")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("MVC_Assignment.Models.City", b =>
                 {
                     b.Navigation("Inhabitants");
                 });
 
-            modelBuilder.Entity("MVC_Assignment.ViewModels.Country", b =>
+            modelBuilder.Entity("MVC_Assignment.Models.Country", b =>
                 {
                     b.Navigation("Cities");
                 });

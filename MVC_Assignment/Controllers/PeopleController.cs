@@ -40,19 +40,11 @@ namespace MVC_Assignment.Controllers
         public IActionResult Create(Person p, string name_input, int phone_input, int cityid_input)
         {
             p = new Person { Name = name_input, PhoneNumber = phone_input, CityId = cityid_input };
+            
             _context.People.Add(p);
 
             _context.SaveChanges();
-            
-
-
-            /*if (ModelState.IsValid)
-            {
-                _context.People.Add(p);
-
-                _context.SaveChanges();
-
-            }*/
+           
             return RedirectToAction("Index");
 
 

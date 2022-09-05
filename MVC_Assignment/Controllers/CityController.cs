@@ -39,8 +39,8 @@ namespace MVC_Assignment.Controllers
             return RedirectToAction("Index");
 
         }
-        /*
-        [HttpPost]
+        
+        
         public IActionResult DeleteCity(int id)
         {
             var city = _context.Cities.FirstOrDefault(x => x.CityId == id);
@@ -56,6 +56,6 @@ namespace MVC_Assignment.Controllers
 
         }
 
-        */
+        
     }
 }
