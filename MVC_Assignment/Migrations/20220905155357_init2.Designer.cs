@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220905091651_init")]
-    partial class init
+    [Migration("20220905155357_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,21 @@ namespace MVC_Assignment.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("LanguagePerson", b =>
+                {
+                    b.Property<int>("LanguagesLanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LanguagesLanguageId", "PeopleId");
+
+                    b.HasIndex("PeopleId");
+
+                    b.ToTable("LanguagePerson");
+                });
 
             modelBuilder.Entity("MVC_Assignment.Models.City", b =>
                 {
@@ -100,6 +115,40 @@ namespace MVC_Assignment.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MVC_Assignment.Models.Language", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LanguageId"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LanguageId");
+
+                    b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            Name = "Swedish"
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            Name = "English"
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            Name = "Bosnian"
+                        });
+                });
+
             modelBuilder.Entity("MVC_Assignment.Models.Person", b =>
                 {
                     b.Property<int>("Id")
@@ -168,6 +217,21 @@ namespace MVC_Assignment.Migrations
                             Name = "Senad",
                             PhoneNumber = 51111
                         });
+                });
+
+            modelBuilder.Entity("LanguagePerson", b =>
+                {
+                    b.HasOne("MVC_Assignment.Models.Language", null)
+                        .WithMany()
+                        .HasForeignKey("LanguagesLanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MVC_Assignment.Models.Person", null)
+                        .WithMany()
+                        .HasForeignKey("PeopleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MVC_Assignment.Models.City", b =>

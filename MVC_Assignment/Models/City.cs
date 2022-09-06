@@ -13,7 +13,7 @@ namespace MVC_Assignment.Models
         public Country Country { get; set; }
 
         public int CountryId { get; set; }
-        public List<Person> Inhabitants { get; set; }
+        public List<Person> Inhabitants { get; set; } = new List<Person>();
 
 
 

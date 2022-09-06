@@ -21,5 +21,7 @@ namespace MVC_Assignment.Models
         public City City { get; set; }
         [Required]
         public int CityId { get; set; }
+
+        public List<Language> Languages { get; set; } = new List<Language>();
     }
 }

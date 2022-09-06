@@ -3,6 +3,7 @@ using MVC_Assignment.DbData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220905154913_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,21 +22,6 @@ namespace MVC_Assignment.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("LanguagePerson", b =>
-                {
-                    b.Property<int>("LanguagesLanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PeopleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("LanguagesLanguageId", "PeopleId");
-
-                    b.HasIndex("PeopleId");
-
-                    b.ToTable("LanguagePerson");
-                });
 
             modelBuilder.Entity("MVC_Assignment.Models.City", b =>
                 {
@@ -215,21 +202,6 @@ namespace MVC_Assignment.Migrations
                             Name = "Senad",
                             PhoneNumber = 51111
                         });
-                });
-
-            modelBuilder.Entity("LanguagePerson", b =>
-                {
-                    b.HasOne("MVC_Assignment.Models.Language", null)
-                        .WithMany()
-                        .HasForeignKey("LanguagesLanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MVC_Assignment.Models.Person", null)
-                        .WithMany()
-                        .HasForeignKey("PeopleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MVC_Assignment.Models.City", b =>

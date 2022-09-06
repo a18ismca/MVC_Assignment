@@ -22,6 +22,19 @@ namespace MVC_Assignment.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Languages",
+                columns: table => new
+                {
+                    LanguageId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Languages", x => x.LanguageId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
@@ -65,12 +78,21 @@ namespace MVC_Assignment.Migrations
             migrationBuilder.InsertData(
                 table: "Countries",
                 columns: new[] { "CountryId", "Name" },
-                values: new object[] { 1, "Sweden" });
+                values: new object[,]
+                {
+                    { 1, "Sweden" },
+                    { 2, "Bosnia" }
+                });
 
             migrationBuilder.InsertData(
-                table: "Countries",
-                columns: new[] { "CountryId", "Name" },
-                values: new object[] { 2, "Bosnia" });
+                table: "Languages",
+                columns: new[] { "LanguageId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Swedish" },
+                    { 2, "English" },
+                    { 3, "Bosnian" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Cities",
@@ -109,6 +131,9 @@ namespace MVC_Assignment.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Languages");
+
             migrationBuilder.DropTable(
                 name: "People");
 

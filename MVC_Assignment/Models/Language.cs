@@ -1,15 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
 namespace MVC_Assignment.Models
 {
-    public class Country
+    public class Language
     {
-
         [Key]
         [Range(0, 1000)]
-        public int CountryId { get; set; }
+        public int LanguageId { get; set; }
 
+        [Required]
         public string Name { get; set; }
-        public List<City> Cities { get; set; } = new List<City>();
+
+        public List<Person> People { get; set; } = new List<Person>();
+
+
     }
 }

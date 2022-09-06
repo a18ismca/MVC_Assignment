@@ -22,10 +22,21 @@ namespace MVC_Assignment.DbData
 
         public DbSet<Country> Countries { get; set; }
 
+        public DbSet<Language> Languages { get; set; }
+
+       
+
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
-           
+            modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 1, Name = "Swedish" });
+            modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 2, Name = "English" });
+            modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 3, Name = "Bosnian" });
+
+
+
 
             modelBuilder.Entity<Country>().HasData(new Country { CountryId = 1, Name = "Sweden" });
             modelBuilder.Entity<Country>().HasData(new Country { CountryId = 2, Name = "Bosnia" });
