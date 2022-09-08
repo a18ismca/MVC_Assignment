@@ -23,7 +23,7 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Index()
         {
-            var listOfPeople = _context.People.Include(x => x.City);
+            var listOfPeople = _context.People.Include(x => x.City).Include(x => x.Languages);
             
             return View(listOfPeople);
         }

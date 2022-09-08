@@ -1,6 +1,9 @@
 ﻿@* @model MVC_Assignment.ViewModels.PeopleViewModel *@
 
 @model IEnumerable<Person>
+@{
+    string langs = "";
+}
 
 
 @foreach(var item in Model)
@@ -16,9 +19,31 @@
                         @Html.DisplayFor(modelItem => item.City.Name)
                 </div>
                 
+        @for(int i = 0; i < item.Languages.Count; i++)
+        {
+            if(i == item.Languages.Count - 1)
+            {
+                langs = langs + item.Languages[i].Name + " \n";
+            }
+            else
+            {
+               langs = langs + item.Languages[i].Name + ",\n ";
+
+            }
+        }
+
+            
+            <div class="col">
+               @langs   
+                </div>
+                
                 <div class="col">
                         @Html.ActionLink("Delete", "DeletePerson", "People", new {  id=item.Id  })
                 </div>
+                @{
+                         langs = "";
+                 }
+
             </div>
           }
 @*
