@@ -16,7 +16,7 @@
        <div class="container pt-3">
         <ul>
             
-            <li>
+            <li class>
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             </li> 
             <li>
@@ -34,6 +34,12 @@
              <li>
                 <a asp-area="" asp-controller="LanguagePerson" asp-action="Index">Add language to person</a>
             </li>
+            <li>
+                <a asp-area="" asp-controller="LanguagePerson" asp-action="Index">Add language to person</a>
+            </li>
+            <li>
+                <partial name="_LoginPartial" />
+            </li>
            
         </ul>
 
@@ -42,6 +48,9 @@
      <div class="container pt-3">
         @RenderBody()
     </div>
+
+    @await RenderSectionAsync("Scripts", required:false)
+
 </body>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
