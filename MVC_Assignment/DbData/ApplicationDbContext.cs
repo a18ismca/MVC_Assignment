@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC_Assignment.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MVC_Assignment.DbData
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
 
         public ApplicationDbContext()
