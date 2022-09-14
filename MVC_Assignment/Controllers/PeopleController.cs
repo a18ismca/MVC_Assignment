@@ -64,8 +64,7 @@ namespace MVC_Assignment.Controllers
             }
             
 
-                var filteredData = listOfPeople.Where(x => /*(x.City.Name == user_input) 
-                                                    || */(x.Name == user_input)).ToList();
+                var filteredData = listOfPeople.Where(x => (x.Name == user_input)).ToList();
 
 
                 listOfPeople = filteredData;
@@ -79,9 +78,21 @@ namespace MVC_Assignment.Controllers
             
 
             return View("Index", listOfPeople);
+
         }
+
+        public IActionResult Edit(int id)
+        {
+            ViewBag.CityOptions = new SelectList(_context.Cities, "CityId", "Name");
+
+            var person = _context.People.Include(x => x.City).FirstOrDefault(x => x.Id == id);
+            return View(person);
+
+        }
+
         
         
+       
         public IActionResult DeletePerson(int id)
         {
             var person = _context.People.FirstOrDefault(x => x.Id == id);

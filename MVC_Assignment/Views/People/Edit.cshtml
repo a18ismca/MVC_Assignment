@@ -1,0 +1,29 @@
+﻿@model Person
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit person</h1>
+
+<form class="form form-control-sm" asp-action="Edit">
+    <label class=form-label asp-for="Name"></label><br/>
+    <input asp-for="Name" /><br/>
+
+       <label class=form-label asp-for="PhoneNumber"></label><br/>
+    <input asp-for="PhoneNumber" /><br/>
+
+      <label class="form-label" asp-for="City"></label><br />
+     
+      @**@
+    <select asp-for="City" asp-items="ViewBag.CityOptions"></select>
+
+    <input class="shadow" type="submit" value="Save changes">
+
+
+</form>
+
+
+
+<li><a asp-action="Index">Return to table</a></li>
