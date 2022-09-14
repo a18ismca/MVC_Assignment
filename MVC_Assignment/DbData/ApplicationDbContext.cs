@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC_Assignment.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVC_Assignment.DbData
 {
@@ -54,7 +55,45 @@ namespace MVC_Assignment.DbData
             modelBuilder.Entity<Person>().HasData(new Person { Id = 5, Name = "Avdo", CityId = 4, PhoneNumber = 10545 });
             modelBuilder.Entity<Person>().HasData(new Person { Id = 6, Name = "Senad", CityId = 4, PhoneNumber = 51111 });
 
+            string adminRoleId = Guid.NewGuid().ToString();
+            string userRoleId = Guid.NewGuid().ToString();
+            string userId = Guid.NewGuid().ToString();
 
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = adminRoleId,
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            });
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = userRoleId,
+                Name = "User",
+                NormalizedName = "USER"
+            });
+
+            PasswordHasher<AppUser> hasher = new PasswordHasher<AppUser>();
+
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = userId,
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM",
+                FirstName = "Admin",
+                LastName = "Adminsson",
+
+                PasswordHash = hasher.HashPassword(null, "password")
+
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = userId,
+                RoleId = adminRoleId,
+            });
 
 
 
