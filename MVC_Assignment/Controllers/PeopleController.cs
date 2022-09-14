@@ -40,6 +40,8 @@ namespace MVC_Assignment.Controllers
         public IActionResult Create(Person p, string name_input, int phone_input, int cityid_input)
         {
             p = new Person { Name = name_input, PhoneNumber = phone_input, CityId = cityid_input };
+
+            
             
             _context.People.Add(p);
 
@@ -88,6 +90,20 @@ namespace MVC_Assignment.Controllers
             var person = _context.People.Include(x => x.City).FirstOrDefault(x => x.Id == id);
             return View(person);
 
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Person p)
+        {
+            ModelState.Remove("Id");
+
+            ModelState.Remove("City");
+
+            _context.Update(p);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         

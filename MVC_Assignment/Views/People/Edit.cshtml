@@ -8,6 +8,10 @@
 <h1>Edit person</h1>
 
 <form class="form form-control-sm" asp-action="Edit">
+
+    <label class=form-label asp-for="Id"></label><br/>
+    <input asp-for="Id" readonly="readonly"/><br/>
+
     <label class=form-label asp-for="Name"></label><br/>
     <input asp-for="Name" /><br/>
 
