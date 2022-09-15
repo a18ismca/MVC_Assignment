@@ -95,6 +95,8 @@ namespace MVC_Assignment.Controllers
         [HttpPost]
         public IActionResult Edit(Person p)
         {
+
+            // ska jag ändra till cascade?
             ModelState.Remove("Id");
 
             ModelState.Remove("City");

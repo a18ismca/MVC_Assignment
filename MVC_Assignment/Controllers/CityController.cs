@@ -39,8 +39,31 @@ namespace MVC_Assignment.Controllers
             return RedirectToAction("Index");
 
         }
-        
-        
+
+        public IActionResult Edit(int id)
+        {
+            var city = _context.Cities.FirstOrDefault(x => x.CityId == id);
+            return View(city);
+
+        }
+
+
+        /*
+        [HttpPost]
+        public IActionResult Edit(City c)
+        {
+
+            // ska jag ändra till cascade?
+            ModelState.Remove("Id");
+
+            _context.Update(c);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }*/
+
+
         public IActionResult DeleteCity(int id)
         {
             var city = _context.Cities.FirstOrDefault(x => x.CityId == id);
