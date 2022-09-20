@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AppUser>
+
+@{
+    ViewData["Title"] = "ShowAllUsers";
+}
+
+<h1>Show all users</h1>
+
+ <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            E-Mail (Username)
+                        </th>
+                        <th>
+                            First name
+                        </th>
+                        <th>
+                            Last name
+                        </th>
+                        <th>
+                            Birth date
+                        </th>                       
+                    </tr>
+                </thead>
+
+                @foreach (var user in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => user.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => user.UserName)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => user.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => user.LastName)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => user.Date)
+                            </td>
+                          
+
+                            
+                        </tr>
+                    </tbody>
+                }
+            </table>
+<p>
+    <a asp-action="Index">Return to roles</a>
+</p>

@@ -47,7 +47,7 @@ namespace MVC_Assignment.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult AddUserToRole()
+        public IActionResult AddRoleToUser()
         {
             ViewBag.UserSelect = new SelectList(_userManager.Users, "Id", "UserName");
             ViewBag.RoleSelect = new SelectList(_roleManager.Roles, "Name", "Name");
@@ -55,7 +55,7 @@ namespace MVC_Assignment.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddUserToRole(string userId, string roleName)
+        public async Task<IActionResult> AddRoleToUser(string userId, string roleName)
         {
             var user = await _userManager.FindByIdAsync(userId);
             await _userManager.AddToRoleAsync(user, roleName);
