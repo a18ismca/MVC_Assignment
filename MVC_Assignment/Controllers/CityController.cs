@@ -42,13 +42,17 @@ namespace MVC_Assignment.Controllers
 
         public IActionResult Edit(int id)
         {
+            ViewBag.CountryOptions = new SelectList(_context.Countries, "CountryId", "Name");
+
+
             var city = _context.Cities.FirstOrDefault(x => x.CityId == id);
             return View(city);
 
         }
 
 
-        /*
+
+        
         [HttpPost]
         public IActionResult Edit(City c)
         {
@@ -56,12 +60,16 @@ namespace MVC_Assignment.Controllers
             // ska jag ändra till cascade?
             ModelState.Remove("Id");
 
-            _context.Update(c);
+            _context.Cities.Update(c);
+
+        /* SqlException: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Cities_Countries_CountryId".The conflict occurred in database "MVC_Assignment", table "dbo.Countries", column 'CountryId'.
+The statement has been terminated. */
+
 
             _context.SaveChanges();
 
             return RedirectToAction("Index");
-        }*/
+        }
 
 
         public IActionResult DeleteCity(int id)

@@ -1,0 +1,18 @@
+﻿@model IdentityRole
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create role</h1>
+
+
+<form asp-action="Create" method="post">
+    <label asp-for="Name"></label> <br />
+    <input asp-for="Name" /> <br />
+    <input type="Submit" value="Create" />
+</form>
+
+
+<li><a asp-action="Index">Return to table</a></li>

@@ -130,6 +130,9 @@ namespace MVC_Assignment.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    // added
+                    await _userManager.AddToRoleAsync(user, "User");
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -174,7 +177,7 @@ namespace MVC_Assignment.Areas.Identity.Pages.Account
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(AppUser)}'. " +
                     $"Ensure that '{nameof(AppUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                    $"override the register page in /Areas/I dentity/Pages/Account/Register.cshtml");
             }
         }
 

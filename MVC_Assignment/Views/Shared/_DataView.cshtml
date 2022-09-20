@@ -41,9 +41,13 @@
                      <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                 </div>
 
-                <div class="col">
-                        @Html.ActionLink("Delete", "DeletePerson", "People", new {  id=item.Id  })
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="col">
+                @Html.ActionLink("Delete", "DeletePerson", "People", new {  id=item.Id  })
                 </div>
+                }
 
                  
 

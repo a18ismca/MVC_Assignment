@@ -5,38 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Countries</h1>
 
-<p>
-    <a asp-action="Create">Create new country</a>
-</p>
-
-    @if (Model != null)
+@if (!User.Identity.IsAuthenticated)
+{
+    <p>You do not have access to this page.</p>
+}
+else
+{
+    if (User.IsInRole("Admin"))
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Delete", "DeleteCountry", "Country", new {  id=item.CountryId  })
 
-                        </td>
+        <p>
+            <a asp-action="Create">Create new country</a>
+        </p>
+
+        @if (Model != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    } else{
-        <p>No results found. </p>  
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "DeleteCountry", "Country", new {  id=item.CountryId  })
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No results found. </p>
+        }
+
+    }
+    else
+    {
+     <p>You do not have authorization of this page.</p>
+
+    }
     }

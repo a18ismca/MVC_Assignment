@@ -96,14 +96,16 @@ namespace MVC_Assignment.Controllers
         public IActionResult Edit(Person p)
         {
 
-            // ska jag ändra till cascade?
+            // ska jag ändra till cascade? får en exception här.
             ModelState.Remove("Id");
 
             ModelState.Remove("City");
 
-            _context.Update(p);
+            _context.People.Update(p);
 
             _context.SaveChanges();
+            
+            
 
             return RedirectToAction("Index");
         }

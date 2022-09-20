@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add language to person</h1>
+
+
+
+
+<form class="form form-control-sm" method="post">
+
+
+    <label class="form-label">Select person</label><br />
+     
+    <select name="userId" asp-items="ViewBag.UserSelect"></select><br />
+
+    
+    <label class="form-label">Select language</label><br />
+     
+    <select name="roleName" asp-items="ViewBag.RoleSelect"></select><br />
+
+    <input class="shadow" type="submit" value="Add language to person" asp-action="AddRoleToPerson">
+
+</form>
+
+<li><a asp-action="Index">Return to table</a></li>
+
+

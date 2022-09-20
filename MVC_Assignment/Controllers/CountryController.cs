@@ -38,6 +38,34 @@ namespace MVC_Assignment.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+
+
+            var country = _context.Countries.FirstOrDefault(x => x.CountryId == id);
+            return View(country);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Country c)
+        {
+
+            // ska jag ändra till cascade?
+            ModelState.Remove("Id");
+
+            _context.Countries.Update(c);
+
+            /* SqlException: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Cities_Countries_CountryId".The conflict occurred in database "MVC_Assignment", table "dbo.Countries", column 'CountryId'.
+    The statement has been terminated. */
+
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult DeleteCountry(int id)
         {
             var country = _context.Countries.FirstOrDefault(x => x.CountryId == id);

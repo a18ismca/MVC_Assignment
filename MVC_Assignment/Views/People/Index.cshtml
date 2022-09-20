@@ -11,13 +11,10 @@
 
 @if (!User.Identity.IsAuthenticated)
 {
-    <p>You do not have access to this page.</p>
-}
-else
-{
-    if (User.IsInRole("Admin"))
-    {
-        <li class="container"><a asp-action="Create">Create person</a></li>
+    <p>You need to sign in with an account in order to access this page.</p>
+} else{
+
+<li class="container"><a asp-action="Create">Create person</a></li>
 
 
 <form class="container" method="post" asp-action="FilterPersons">
@@ -37,10 +34,7 @@ else
 <p>
     <a asp-controller="People" asp-action="Index">Refresh table</a>
 </p>
+}
 
-    } else{
-        <p>You do not have access to this page.</p>
-    }
-} 
 
 

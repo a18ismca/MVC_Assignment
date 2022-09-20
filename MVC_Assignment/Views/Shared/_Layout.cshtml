@@ -34,9 +34,13 @@
              <li>
                 <a asp-area="" asp-controller="LanguagePerson" asp-action="Index">Add language to person</a>
             </li>
-            <li>
-                <a asp-area="" asp-controller="LanguagePerson" asp-action="Index">Add language to person</a>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
             </li>
+            }
             <li>
                 <partial name="_LoginPartial" />
             </li>
@@ -50,6 +54,8 @@
     </div>
 
     @await RenderSectionAsync("Scripts", required:false)
+
+   
 
 </body>
 
