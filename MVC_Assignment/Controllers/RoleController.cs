@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC_Assignment.Models;
+using MVC_Assignment.ViewModels;
 
 namespace MVC_Assignment.Controllers
 {
@@ -66,6 +67,30 @@ namespace MVC_Assignment.Controllers
         public IActionResult ShowAllUsers()
         {
             return View(_userManager.Users);
+        }
+
+        public async Task<IActionResult> ShowUserRoles(string Id)
+        {
+            UserRoleVM vm = new UserRoleVM();
+            var user = await _userManager.FindByIdAsync(Id);
+
+            var assignedRoles = new List<string>(await _userManager.GetRolesAsync(user));
+            vm.UserId = Id;
+            vm.UserName = user.UserName;
+
+            vm.Roles.AddRange(assignedRoles);
+
+            return View(vm);
+        }
+        public async Task<IActionResult> RemoveRoleFromUser(string rolename, string userid)
+        {
+            // Find and get id
+            var user = await _userManager.FindByIdAsync(userid);
+
+            // remove id from rolename
+            await _userManager.RemoveFromRoleAsync(user, rolename);
+
+            return RedirectToAction("ShowUserRoles", new { id = userid });
         }
 
     }

@@ -57,14 +57,9 @@ namespace MVC_Assignment.Controllers
         public IActionResult Edit(City c)
         {
 
-            // ska jag ändra till cascade?
-            ModelState.Remove("Id");
+          
 
             _context.Cities.Update(c);
-
-        /* SqlException: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Cities_Countries_CountryId".The conflict occurred in database "MVC_Assignment", table "dbo.Countries", column 'CountryId'.
-The statement has been terminated. */
-
 
             _context.SaveChanges();
 

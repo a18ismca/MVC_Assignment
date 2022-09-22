@@ -46,9 +46,9 @@
                              <td>
                                 @Html.DisplayFor(modelItem => user.Date)
                             </td>
-                          
-
-                            
+                             <td>
+                                <a asp-action="ShowUserRoles" asp-route-id="@user.Id" class="btn-primary">Check roles</a>
+                            </td>
                         </tr>
                     </tbody>
                 }

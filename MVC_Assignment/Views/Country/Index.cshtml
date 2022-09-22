@@ -39,6 +39,9 @@ else
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
+                                <a asp-action="Edit" asp-route-id="@item.CountryId">Edit</a>
+                            </td>
+                            <td>
                                 @Html.ActionLink("Delete", "DeleteCountry", "Country", new {  id=item.CountryId  })
 
                             </td>

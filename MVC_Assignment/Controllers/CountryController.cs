@@ -53,7 +53,6 @@ namespace MVC_Assignment.Controllers
         {
 
             // ska jag ändra till cascade?
-            ModelState.Remove("Id");
 
             _context.Countries.Update(c);
 
