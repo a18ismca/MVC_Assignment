@@ -29,7 +29,24 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.AddRazorPages();
 
+
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MikaelKors",
+                      policy =>
+                      {
+                          policy.WithOrigins("*");
+
+                      });
+});
+
+
 var app = builder.Build();
+
+
+app.UseCors("MikaelKors");
 
 app.UseStaticFiles();
 
@@ -37,17 +54,14 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHttpsRedirection();
 app.MapRazorPages();
 
 
 app.MapControllerRoute(
-    name: "fever",
-    pattern: "fever",
-    defaults: new { controller = "Home", action = "Index" });
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "Guess",
-    pattern: "{controller=Home}/{action=Index}/{id?}"
-    );
+
 
 app.Run();
