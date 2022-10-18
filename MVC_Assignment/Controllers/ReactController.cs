@@ -37,7 +37,7 @@ namespace MVC_Assignment.Controllers
     
 
         
-        [HttpDelete("deleti/{id}")]
+        [HttpDelete("delit/{id}")]
         public async Task<ActionResult> DeletePerson(int id)
         {
             var person = _context.People.FirstOrDefault(x => x.Id == id);
@@ -101,8 +101,8 @@ namespace MVC_Assignment.Controllers
 
         }
 
-        [HttpPost("people/add")]
-        public Person AddPerson(string name, int phoneNumber, int cityId)
+        [HttpPost("addPerson")]
+        public IEnumerable<Person> AddPerson(string name, int phoneNumber, int cityId)
         {
             Person p = new Person { Name = name, PhoneNumber = phoneNumber, CityId = cityId };
 
@@ -110,7 +110,7 @@ namespace MVC_Assignment.Controllers
 
             _context.SaveChanges();
 
-            return p;
+            yield return p;
         }
     }
 }

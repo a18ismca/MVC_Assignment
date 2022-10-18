@@ -43,7 +43,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "MikaelKors",
                       policy =>
                       {
-                          policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                          policy.WithOrigins("*").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 
                       });
 });
