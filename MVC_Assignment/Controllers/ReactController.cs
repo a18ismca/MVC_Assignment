@@ -23,23 +23,19 @@ namespace MVC_Assignment.Controllers
         [HttpGet("people")]
         public IEnumerable<Person> GetPeople()
         {
+            var languages = _context.Languages.Include(x => x.People);
 
+            // exception: var people = _context.People.Include(x => x.City).ThenInclude(x => x.Country).Include(x => languages);
+            var language = _context.Languages;
 
-       var people = _context.People.Include(x => x.City);
+            var person = _context.People;
 
-           
+            //rson.Languages.Add(language);
 
-        
+            var people = _context.People.Include(x => x.Languages).Include(x => x.City).ThenInclude(x => x.Country);
 
-        //var person  = _context.People.Where(x=>x.Id == id).FirstOrDefault();    
+            //var people = _context.People.Include(x => x.City).ThenInclude(x => x.Country);
 
-        //var personCityId = _context.People.Select(p => p.CityId).FirstOrDefault();
-
-                
-
-        //var city = _context.Cities.Where(x => x.CityId == person.CityId).FirstOrDefault();
-
-        //string cityName = city.Name;
 
             return people;
 
@@ -54,7 +50,7 @@ namespace MVC_Assignment.Controllers
         [HttpGet("languages")]
         public IEnumerable<Language> GetLanguages()
         {
-            var data = _context.Languages;
+            var data = _context.Languages.Include(x => x.People);
 
             return data;
 
@@ -87,13 +83,12 @@ namespace MVC_Assignment.Controllers
         [HttpGet("personaldetails/{id}")]
         public IEnumerable<Person> GetPersonDetails(int id)
         {
-            
 
-            var person = _context.People.Where(x => x.Id == id);
+            var person = _context.People.Where(x => x.Id == id).Include(x => x.City).ThenInclude(x => x.Country);
 
             return person;
 
-        }// ej ::
+        }
 
         [HttpPost("people/add")]
         public Person AddPerson(string name, int phoneNumber, int cityId)
