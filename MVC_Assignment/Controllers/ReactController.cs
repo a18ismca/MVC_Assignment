@@ -23,14 +23,7 @@ namespace MVC_Assignment.Controllers
         [HttpGet("people")]
         public IEnumerable<Person> GetPeople()
         {
-            var languages = _context.Languages.Include(x => x.People);
-
-            // exception: var people = _context.People.Include(x => x.City).ThenInclude(x => x.Country).Include(x => languages);
-            var language = _context.Languages;
-
-            var person = _context.People;
-
-            //rson.Languages.Add(language);
+   
 
             var people = _context.People.Include(x => x.Languages).Include(x => x.City).ThenInclude(x => x.Country);
 
@@ -41,9 +34,27 @@ namespace MVC_Assignment.Controllers
 
         }
 
-       
+    
 
-    /*  Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations */
+        
+        [HttpDelete("deleti/{id}")]
+        public async Task<ActionResult> DeletePerson(int id)
+        {
+            var person = _context.People.FirstOrDefault(x => x.Id == id);
+
+
+            _context.People.Remove(person);
+
+            await _context.SaveChangesAsync();
+
+
+            return Ok(person);
+        }
+
+        
+
+
+        /*  Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations */
 
 
 
@@ -83,8 +94,8 @@ namespace MVC_Assignment.Controllers
         [HttpGet("personaldetails/{id}")]
         public IEnumerable<Person> GetPersonDetails(int id)
         {
+            var person = _context.People.Where(x => x.Id == id).Include(x => x.Languages).Include(x => x.City).ThenInclude(x => x.Country);
 
-            var person = _context.People.Where(x => x.Id == id).Include(x => x.City).ThenInclude(x => x.Country);
 
             return person;
 

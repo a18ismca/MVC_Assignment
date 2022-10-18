@@ -253,14 +253,14 @@ namespace MVC_Assignment.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "f7c125c9-539d-4d50-bb37-a98c3fc2a04b", "09cb808e-e68d-49ff-aa55-ff12c94a8bfa", "Admin", "ADMIN" },
-                    { "fa75c1d1-8ba1-4058-887c-078ffa93e1ee", "4413491c-8f04-4631-8bdd-e2d56b7cae82", "User", "USER" }
+                    { "84d8c157-016e-4ce7-8b04-9fc9b5ee48e8", "8ea6bfbd-f0db-4618-bdb1-5ba6c1616756", "Admin", "ADMIN" },
+                    { "fc6d6c97-ea52-4474-82b2-60b1ecb087c4", "cecf9b3b-e6ac-4cac-a312-c5203d23d1a1", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Date", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "d63809af-27e8-41c9-8535-e902e3cd77f3", 0, "2450e9e2-a7fb-4efb-a257-8ee9697b5613", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", false, "Admin", "Adminsson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEPWMmB+EQPmjFo5KWgHN71AexAj0jaewEi8Rk4zLbg3sevfagibVw5ANduHT08SEpg==", null, false, "1aba3374-2c87-41a1-89ad-e46be5e00da9", false, "admin@admin.com" });
+                values: new object[] { "32b85fd6-420c-4a5d-be08-fc8ba6c4bc6e", 0, "cfb7d0c2-54b5-4597-a0ae-a9db29398510", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", false, "Admin", "Adminsson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEB9PA2TtAkOya4lGJ2US1Ue/K5mZgrbpoxgtuortEXHEBBsV8/7TncSCh4CnL59ZCQ==", null, false, "ee5c1700-3a05-4f91-ab00-cb2b23ccb34a", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Countries",
@@ -284,7 +284,7 @@ namespace MVC_Assignment.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "f7c125c9-539d-4d50-bb37-a98c3fc2a04b", "d63809af-27e8-41c9-8535-e902e3cd77f3" });
+                values: new object[] { "84d8c157-016e-4ce7-8b04-9fc9b5ee48e8", "32b85fd6-420c-4a5d-be08-fc8ba6c4bc6e" });
 
             migrationBuilder.InsertData(
                 table: "Cities",
