@@ -23,11 +23,11 @@ namespace MVC_Assignment.Controllers
         [HttpGet("people")]
         public IEnumerable<Person> GetPeople()
         {
-   
 
-            var people = _context.People.Include(x => x.Languages).Include(x => x.City).ThenInclude(x => x.Country);
 
-            //var people = _context.People.Include(x => x.City).ThenInclude(x => x.Country);
+            var people = _context.People;
+
+            
 
 
             return people;
@@ -101,16 +101,23 @@ namespace MVC_Assignment.Controllers
 
         }
 
-        [HttpPost("addPerson")]
-        public IEnumerable<Person> AddPerson(string name, int phoneNumber, int cityId)
+        [HttpPost("addperson")]
+        public Person AddPerson(Person person)
         {
-            Person p = new Person { Name = name, PhoneNumber = phoneNumber, CityId = cityId };
 
-            _context.People.Add(p);
+            person = new Person();
 
-            _context.SaveChanges();
 
-            yield return p;
+            ModelState.Remove("City");
+            ModelState.Remove("Languages");
+
+            if(ModelState.IsValid)
+            {
+                _context.People.Add(person);
+                _context.SaveChanges();
+            }
+
+            return person;
         }
     }
 }
