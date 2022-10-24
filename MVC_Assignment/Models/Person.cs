@@ -8,6 +8,7 @@ namespace MVC_Assignment.Models
         [Key]
         [Range(0, 1000)]
         public int Id { get; set; }
+
         [MaxLength(20)]
         [Required]
         public string Name { get; set; }
@@ -16,9 +17,9 @@ namespace MVC_Assignment.Models
         [Required]
         public int PhoneNumber { get; set; }
 
-        [Display(Name = "Residence"), MaxLength(40)]
-        [Required]
-        public City City { get; set; }
+        //[Display(Name = "Residence"), MaxLength(40)]
+        
+        public City? City { get; set; }
         [Required]
         public int CityId { get; set; }
 

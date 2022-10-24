@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language.Extensions;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MVC_Assignment.DbData;
 using MVC_Assignment.Models;
@@ -101,20 +102,34 @@ namespace MVC_Assignment.Controllers
 
         }
 
+       
+
+        [HttpPut("editperson")]
+        public async Task<ActionResult> EditPerson(Person person)
+        {
+           
+            _context.People.Update(person);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(person);
+            
+        }
+
         [HttpPost("addperson")]
         public Person AddPerson(Person person)
         {
 
-            person = new Person();
+            person = new Person { Name = person.Name, PhoneNumber = person.PhoneNumber, CityId = person.CityId};
 
-
-            ModelState.Remove("City");
-            ModelState.Remove("Languages");
-
-            if(ModelState.IsValid)
+            try
             {
                 _context.People.Add(person);
                 _context.SaveChanges();
+
+            } catch (SqlException e)
+            {
+                Console.WriteLine(e);
             }
 
             return person;
