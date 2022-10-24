@@ -10,6 +10,9 @@ namespace MVC_Assignment.Controllers
     {
         [Route("api/[controller]")]
         [ApiController]
+
+        // The context is used in order to store and change data from the front-end solution.
+
         public class ReactController : ControllerBase
         {
             readonly ApplicationDbContext _context;
@@ -20,44 +23,44 @@ namespace MVC_Assignment.Controllers
             _context = context;
         }
 
-        // GET /api/React/
+        // fetch all persons from the db
+
         [HttpGet("people")]
         public IEnumerable<Person> GetPeople()
         {
-
-
             var people = _context.People;
 
-            
-
-
             return people;
-
         }
 
-    
-
-        
-        [HttpDelete("delit/{id}")]
-        public async Task<ActionResult> DeletePerson(int id)
+        [HttpGet("personaldetails/{id}")]
+        public IEnumerable<Person> GetPersonDetails(int id)
         {
-            var person = _context.People.FirstOrDefault(x => x.Id == id);
+            var person = _context.People.Where(x => x.Id == id).Include(x => x.Languages).Include(x => x.City).ThenInclude(x => x.Country);
 
+            return person;
 
-            _context.People.Remove(person);
-
-            await _context.SaveChangesAsync();
-
-
-            return Ok(person);
         }
 
-        
+
+        [HttpGet("cities")]
+        public IEnumerable<City> GetCities()
+        {
+            var data = _context.Cities;
+
+            return data;
+        }
 
 
-        /*  Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations */
+       
+        [HttpGet("countries")]
+        public IEnumerable<Country> GetCountries()
+        {
 
+            var data = _context.Countries;
 
+            return data;
+        }
 
         [HttpGet("languages")]
         public IEnumerable<Language> GetLanguages()
@@ -68,42 +71,29 @@ namespace MVC_Assignment.Controllers
 
         }
 
-        [HttpGet("cities")]
-        public IEnumerable<City> GetCities()
-        {
-            var data = _context.Cities;
+        // Set the person attributes to the person created in frontend.
 
-            return data;
-        }
-
-        [HttpGet("countries")]
-        public IEnumerable<Country> GetCountries()
+        [HttpPost("addperson")]
+        public Person AddPerson(Person person)
         {
 
-            var data = _context.Countries;
+            person = new Person { Name = person.Name, PhoneNumber = person.PhoneNumber, CityId = person.CityId };
 
-            return data;
-        }
-
-        [HttpGet("{countryId}/cities")]
-        public IEnumerable<City> GetCitiesInCountry(int countryId)
+            try
             {
-            var cities = _context.Cities.Where(x => x.CountryId == countryId);
-            return cities; 
+                _context.People.Add(person);
+                _context.SaveChanges();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
             }
 
-        [HttpGet("personaldetails/{id}")]
-        public IEnumerable<Person> GetPersonDetails(int id)
-        {
-            var person = _context.People.Where(x => x.Id == id).Include(x => x.Languages).Include(x => x.City).ThenInclude(x => x.Country);
-
-
             return person;
-
         }
 
-       
-
+        // Is unused for this project.
         [HttpPut("editperson")]
         public async Task<ActionResult> EditPerson(Person person)
         {
@@ -116,23 +106,20 @@ namespace MVC_Assignment.Controllers
             
         }
 
-        [HttpPost("addperson")]
-        public Person AddPerson(Person person)
+        [HttpDelete("delit/{id}")]
+        public async Task<ActionResult> DeletePerson(int id)
         {
+            var person = _context.People.FirstOrDefault(x => x.Id == id);
 
-            person = new Person { Name = person.Name, PhoneNumber = person.PhoneNumber, CityId = person.CityId};
-
-            try
+            if (person != null)
             {
-                _context.People.Add(person);
-                _context.SaveChanges();
+                _context.People.Remove(person);
 
-            } catch (SqlException e)
-            {
-                Console.WriteLine(e);
+                await _context.SaveChangesAsync();
+
             }
 
-            return person;
+            return Ok(person);
         }
     }
 }
